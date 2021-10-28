@@ -3,27 +3,84 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.tang.mall</groupId>
-    <artifactId>mall-product</artifactId>
+    <artifactId>mall</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>mall-coupon</module>
         <module>mall-member</module>
         <module>mall-order</module>
         <module>mall-product</module>
         <module>mall-ware</module>
+        <module>renren-fast</module>
+        <module>renren-generator</module>
+        <module>mall-common</module>
     </modules>
-
     <packaging>pom</packaging>
 
+    <!--  版本管理 -->
     <properties>
-
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <junit.version>4.12</junit.version>
+        <log4j.version>1.2.17</log4j.version>
+        <mysql.version>5.1.47</mysql.version>
+        <druid.version>1.1.17</druid.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-
+            <!-- 人人开源工具类自选，为逆向工程代码服务 -->
+            <dependency>
+                <groupId>com.tang.mall</groupId>
+                <artifactId>mall-common</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <!-- Boot以及Cloud的对应版本 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.3.2.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.SR9</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- 常用jdbc、测试相关 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.2.6.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
