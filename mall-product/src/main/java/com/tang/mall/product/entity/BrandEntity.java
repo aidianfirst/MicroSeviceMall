@@ -1,11 +1,15 @@
 package com.tang.mall.product.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import org.hibernate.validator.constraints.URL;
+
+import javax.validation.constraints.*;
 
 /**
  * Ʒ
@@ -19,34 +23,29 @@ import lombok.Data;
 public class BrandEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Ʒ
-	 */
+	@NotNull(message = "修改必须指定id")
+	@Null(message = "新增不能指定id")
 	@TableId
 	private Long brandId;
-	/**
-	 * Ʒ
-	 */
+
+	@NotBlank(message = "品牌名必须填写")
 	private String name;
-	/**
-	 * Ʒ
-	 */
+
+	@NotEmpty
+	@URL(message = "必须是合法url")
 	private String logo;
-	/**
-	 * 
-	 */
+
 	private String descript;
-	/**
-	 * 
-	 */
+
+	@NotEmpty
 	private Integer showStatus;
-	/**
-	 * 
-	 */
+
+	@NotEmpty
+	@Pattern(regexp = "^[a-zA-Z]$", message = "检索首字母必须是一个字母")
 	private String firstLetter;
-	/**
-	 * 
-	 */
+
+	@NotNull
+	@Min(value = 0, message = "排序值必须大于0")
 	private Integer sort;
 
 }

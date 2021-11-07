@@ -1,6 +1,7 @@
 package com.tang.mall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,7 @@ import com.tang.common.utils.PageUtils;
 import com.tang.common.utils.R;
 
 
-
 /**
- * 
- *
  * @author aidianfirst
  * @email aidianfirst@gmail.com
  * @date 2021-10-28 19:22:35
@@ -31,13 +29,13 @@ public class CategoryController {
     private CategoryService categoryService;
 
     /**
-     * 列表
+     * 查询所有分类及子分类，进行树形结构展示
      */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = categoryService.queryPage(params);
+    @RequestMapping("/list/tree")
+    public R list() {
+        List<CategoryEntity> entities = categoryService.listWithTree();
 
-        return R.ok().put("page", page);
+        return R.ok().put("data", entities);
     }
 
 
@@ -45,18 +43,28 @@ public class CategoryController {
      * 信息
      */
     @RequestMapping("/info/{catId}")
-    public R info(@PathVariable("catId") Long catId){
-		CategoryEntity category = categoryService.getById(catId);
+    public R info(@PathVariable("catId") Long catId) {
+        CategoryEntity category = categoryService.getById(catId);
 
-        return R.ok().put("category", category);
+        return R.ok().put("data", category);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody CategoryEntity category){
-		categoryService.save(category);
+    public R save(@RequestBody CategoryEntity category) {
+        categoryService.save(category);
+
+        return R.ok();
+    }
+
+    /**
+     * 批量修改
+     */
+    @RequestMapping("/update/sort")
+    public R updateSort(@RequestBody CategoryEntity[] category) {
+        categoryService.updateBatchById(Arrays.asList(category));
 
         return R.ok();
     }
@@ -65,8 +73,8 @@ public class CategoryController {
      * 修改
      */
     @RequestMapping("/update")
-    public R update(@RequestBody CategoryEntity category){
-		categoryService.updateById(category);
+    public R update(@RequestBody CategoryEntity category) {
+        categoryService.updateCascade(category);
 
         return R.ok();
     }
@@ -75,8 +83,8 @@ public class CategoryController {
      * 删除
      */
     @RequestMapping("/delete")
-    public R delete(@RequestBody Long[] catIds){
-		categoryService.removeByIds(Arrays.asList(catIds));
+    public R delete(@RequestBody Long[] catIds) {
+        categoryService.removeMenuByIds(Arrays.asList(catIds));
 
         return R.ok();
     }

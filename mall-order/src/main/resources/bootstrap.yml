@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: mall-order
+  cloud:
+    nacos:
+      config:
+        namespace: 8fbda49d-e92c-4b02-bf9e-a6bab99cf8e0
+        server-addr: localhost:8848 #Nacos作为配置中心地址
+        file-extension: yml
+        group: dev
+
+        extension-configs:
+          - data-id: datasource.yml
+            group: dev
+            refresh: true
+
+          - data-id: mybatis.yml
+            group: dev
+            refresh: true
+
+          - data-id: common.yml
+            group: dev
+            refresh: true
+
+
+

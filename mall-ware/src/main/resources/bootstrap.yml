@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: mall-ware
+  cloud:
+    nacos:
+      config:
+        namespace: bb53d9bb-f2d0-4657-a6db-d0b0c18c398a
+        server-addr: localhost:8848 #Nacos作为配置中心地址
+        file-extension: yml
+        group: dev
+
+        extension-configs:
+          - data-id: datasource.yml
+            group: dev
+            refresh: true
+
+          - data-id: mybatis.yml
+            group: dev
+            refresh: true
+
+          - data-id: common.yml
+            group: dev
+            refresh: true
+
+
+

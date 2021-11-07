@@ -10,7 +10,7 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 
-/renren-fast/**
 /renren-generator/**
+/renren-fast/src/test/**
 **/target/
 **/.gitignore

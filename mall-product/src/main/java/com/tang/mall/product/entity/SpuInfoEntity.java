@@ -19,43 +19,24 @@ import lombok.Data;
 @TableName("pms_spu_info")
 public class SpuInfoEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * 
-	 */
+	
 	@TableId
 	private Long id;
-	/**
-	 * 
-	 */
+	
 	private String spuName;
-	/**
-	 * 
-	 */
+	
 	private String spuDescription;
-	/**
-	 * 
-	 */
-	private Long catalogId;
-	/**
-	 * Ʒ
-	 */
+	
+	private Long catelogId;
+
 	private Long brandId;
-	/**
-	 * 
-	 */
+	
 	private BigDecimal weight;
-	/**
-	 * 
-	 */
+	
 	private Integer publishStatus;
-	/**
-	 * 
-	 */
+	
 	private Date createTime;
-	/**
-	 * 
-	 */
+	
 	private Date updateTime;
 
 }

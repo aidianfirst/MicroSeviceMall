@@ -1,6 +1,7 @@
 package com.tang.mall.product.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
@@ -32,57 +33,32 @@ public class SpuCommentEntity implements Serializable {
 	 * spu_id
 	 */
 	private Long spuId;
-	/**
-	 * 
-	 */
+
 	private String spuName;
-	/**
-	 * 
-	 */
+
 	private String memberNickName;
-	/**
-	 * 
-	 */
+
 	private Integer star;
-	/**
-	 * 
-	 */
+
 	private String memberIp;
-	/**
-	 * 
-	 */
+
 	private Date createTime;
-	/**
-	 * 
-	 */
+
+	@TableLogic(value = "1", delval = "0")
 	private Integer showStatus;
-	/**
-	 * 
-	 */
+
 	private String spuAttributes;
-	/**
-	 * 
-	 */
+
 	private Integer likesCount;
-	/**
-	 * 
-	 */
+
 	private Integer replyCount;
-	/**
-	 * 
-	 */
+
 	private String resources;
-	/**
-	 * 
-	 */
+
 	private String content;
-	/**
-	 * 
-	 */
+
 	private String memberIcon;
-	/**
-	 * 
-	 */
+
 	private Integer commentType;
 
 }

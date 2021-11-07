@@ -19,30 +19,18 @@ import lombok.Data;
 public class SpuImagesEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * id
-	 */
+
 	@TableId
 	private Long id;
-	/**
-	 * spu_id
-	 */
+
 	private Long spuId;
-	/**
-	 * ͼƬ
-	 */
+
 	private String imgName;
-	/**
-	 * ͼƬ
-	 */
+
 	private String imgUrl;
-	/**
-	 * ˳
-	 */
+
 	private Integer imgSort;
-	/**
-	 * 
-	 */
+	
 	private Integer defaultImg;
 
 }
