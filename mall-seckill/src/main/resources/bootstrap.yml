@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: mall-seckill
+  cloud:
+    nacos:
+      config:
+        namespace: 88a6378d-ce9e-4fbb-8b9c-415f06282473
+        server-addr: localhost:8848 #Nacos作为配置中心地址
+        file-extension: yml
+        group: dev
+
+        extension-configs:
+          - data-id: common.yml
+            group: dev
+            refresh: true
+
+          - data-id: thread.yml
+            group: dev
+            refresh: true
+
+          - data-id: rabbit.yml
+            group: dev
+            refresh: true
+
+
+
+

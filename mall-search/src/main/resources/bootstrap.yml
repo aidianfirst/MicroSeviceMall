@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: mall-search
+  cloud:
+    nacos:
+      config:
+        namespace: b3531ac5-3f1c-46e9-b3e7-a5a9bfcb8707
+        server-addr: localhost:8848 #Nacos作为配置中心地址
+        file-extension: yml
+        group: dev
+
+        extension-configs:
+          - data-id: common.yml
+            group: dev
+            refresh: true
