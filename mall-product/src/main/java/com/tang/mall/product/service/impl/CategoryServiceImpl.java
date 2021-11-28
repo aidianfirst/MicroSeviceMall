@@ -1,6 +1,10 @@
 package com.tang.mall.product.service.impl;
 
 import com.tang.mall.product.service.CategoryBrandRelationService;
+import com.tang.mall.product.vo.CateJsonVo;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -9,8 +13,8 @@ import java.util.stream.Collectors;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.Query;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.Query;
 
 import com.tang.mall.product.dao.CategoryDao;
 import com.tang.mall.product.entity.CategoryEntity;
@@ -67,11 +71,64 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         return parentPath.toArray(new Long[parentPath.size()]);
     }
 
+    @Caching(evict = {
+            @CacheEvict(value = {"category"}, key = "'getLevel1Menu'"),
+            @CacheEvict(value = {"category"}, key = "'getCateJson'")
+    })
     @Override
     // 级联更新全部数据
     public void updateCascade(CategoryEntity category) {
         this.updateById(category);
         categoryBrandRelationService.updateCategory(category.getCatId(), category.getName());
+    }
+
+    @Cacheable(value = {"category"}, key = "#root.method.name")
+    @Override
+    public List<CategoryEntity> getLevel1Menu() {
+        List<CategoryEntity> categoryEntities = baseMapper.selectList(new QueryWrapper<CategoryEntity>().eq("parent_cid", 0));
+        return categoryEntities;
+    }
+
+    @Cacheable(value = {"category"}, key = "#root.method.name")
+    @Override
+    public Map<String, List<CateJsonVo>> getCateJson() {
+        Map<String, List<CateJsonVo>> cateJsonWithSpringCache = getCateJsonWithSpringCache();
+        return cateJsonWithSpringCache;
+    }
+
+    public Map<String, List<CateJsonVo>> getCateJsonWithSpringCache() {
+        List<CategoryEntity> categoryEntities = baseMapper.selectList(null);
+        List<CategoryEntity> categoryLevel1 = getBypCid(0L, categoryEntities);
+        Map<String, List<CateJsonVo>> collect = categoryLevel1.stream().collect(Collectors.toMap(k -> k.getCatId().toString(), v -> {
+            // 二级放一级
+            List<CategoryEntity> categoryLevel2 = getBypCid(v.getCatId(), categoryEntities);
+            List<CateJsonVo> cateJsonVoList = categoryLevel2.stream().map(item -> {
+                CateJsonVo cateJsonVo = new CateJsonVo();
+                cateJsonVo.setCatelog1Id(item.getParentCid());
+                cateJsonVo.setId(item.getCatId());
+                cateJsonVo.setName(item.getName());
+                // 三级放二级
+                List<CategoryEntity> categoryLevel3 = getBypCid(item.getCatId(), categoryEntities);
+                List<CateJsonVo.Catelog3List> catelog3Lists = categoryLevel3.stream().map(categoryEntity -> {
+                    CateJsonVo.Catelog3List catelog3List = new CateJsonVo.Catelog3List();
+                    catelog3List.setCatelog2Id(categoryEntity.getParentCid());
+                    catelog3List.setId(categoryEntity.getCatId());
+                    catelog3List.setName(categoryEntity.getName());
+                    return catelog3List;
+                }).collect(Collectors.toList());
+                cateJsonVo.setCatelog3List(catelog3Lists);
+                return cateJsonVo;
+            }).collect(Collectors.toList());
+            return cateJsonVoList;
+        }));
+        return collect;
+    }
+
+    private List<CategoryEntity> getBypCid(Long pCid, List<CategoryEntity> categoryEntities) {
+        List<CategoryEntity> collect = categoryEntities.stream().filter(item ->
+            item.getParentCid().equals(pCid)
+        ).collect(Collectors.toList());
+        return collect;
     }
 
     // 递归查找子菜单

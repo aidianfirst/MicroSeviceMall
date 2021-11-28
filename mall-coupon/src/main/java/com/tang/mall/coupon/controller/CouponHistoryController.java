@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tang.mall.coupon.entity.CouponHistoryEntity;
 import com.tang.mall.coupon.service.CouponHistoryService;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.R;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.R;
 
 
 

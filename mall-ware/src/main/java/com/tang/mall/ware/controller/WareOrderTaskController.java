@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tang.mall.ware.entity.WareOrderTaskEntity;
 import com.tang.mall.ware.service.WareOrderTaskService;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.R;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.R;
 
 
 

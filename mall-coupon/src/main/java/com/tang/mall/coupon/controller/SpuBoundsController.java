@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.tang.mall.coupon.entity.SpuBoundsEntity;
 import com.tang.mall.coupon.service.SpuBoundsService;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.R;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.R;
 
 
 

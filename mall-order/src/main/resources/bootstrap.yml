@@ -22,5 +22,17 @@ spring:
             group: dev
             refresh: true
 
+          - data-id: thread.yml
+            group: dev
+            refresh: true
+
+          - data-id: rabbit.yml
+            group: dev
+            refresh: true
+
+          - data-id: pay.yml
+            group: dev
+            refresh: true
+
 
 

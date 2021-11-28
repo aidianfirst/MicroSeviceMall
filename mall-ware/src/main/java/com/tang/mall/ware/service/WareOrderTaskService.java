@@ -1,7 +1,7 @@
 package com.tang.mall.ware.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tang.common.utils.PageUtils;
+import com.tang.mall.common.utils.PageUtils;
 import com.tang.mall.ware.entity.WareOrderTaskEntity;
 
 import java.util.Map;
@@ -16,5 +16,7 @@ import java.util.Map;
 public interface WareOrderTaskService extends IService<WareOrderTaskEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    WareOrderTaskEntity getOrderTaskByOrderSn(String orderSn);
 }
 

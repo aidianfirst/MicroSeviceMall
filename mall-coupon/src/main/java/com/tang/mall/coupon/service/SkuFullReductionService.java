@@ -1,8 +1,8 @@
 package com.tang.mall.coupon.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tang.common.to.SkuReductionTo;
-import com.tang.common.utils.PageUtils;
+import com.tang.mall.common.to.SkuReductionTo;
+import com.tang.mall.common.utils.PageUtils;
 import com.tang.mall.coupon.entity.SkuFullReductionEntity;
 
 import java.util.Map;

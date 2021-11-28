@@ -5,16 +5,12 @@ import java.util.Map;
 
 import com.tang.mall.product.vo.SpuSaveVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.tang.mall.product.entity.SpuInfoEntity;
 import com.tang.mall.product.service.SpuInfoService;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.R;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.R;
 
 
 
@@ -30,6 +26,18 @@ import com.tang.common.utils.R;
 public class SpuInfoController {
     @Autowired
     private SpuInfoService spuInfoService;
+
+    @PostMapping("/{spuId}/up")
+    public R spuUp(@PathVariable("spuId") Long spuId){
+        spuInfoService.up(spuId);
+        return R.ok();
+    }
+
+    @GetMapping("/skuId/{id}")
+    public R getSpuInfoBySkuId(@PathVariable("id") Long skuId){
+        SpuInfoEntity entity = spuInfoService.getSpuInfoBySkuId(skuId);
+        return R.ok().setData(entity);
+    }
 
     /**
      * 列表

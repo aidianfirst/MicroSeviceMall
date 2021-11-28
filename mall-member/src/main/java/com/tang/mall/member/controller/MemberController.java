@@ -3,17 +3,18 @@ package com.tang.mall.member.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.tang.mall.common.exception.CodeEnum;
+import com.tang.mall.member.exception.PhoneExist;
+import com.tang.mall.member.exception.UserNameExist;
+import com.tang.mall.member.vo.MemberLoginVo;
+import com.tang.mall.member.vo.MemberRegistVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.tang.mall.member.entity.MemberEntity;
 import com.tang.mall.member.service.MemberService;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.R;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.R;
 
 
 /**
@@ -28,6 +29,29 @@ import com.tang.common.utils.R;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+
+    @PostMapping("/login")
+    public R login(@RequestBody MemberLoginVo vo){
+        MemberEntity entity = memberService.login(vo);
+        // 登录成功才会返回实体
+        if(entity != null){
+            return R.ok().setData(entity);
+        }else {
+            return R.error(CodeEnum.LOGINACCT_PASSWORD_EXCEPTION.getCode(), CodeEnum.LOGINACCT_PASSWORD_EXCEPTION.getMsg());
+        }
+    }
+
+    @PostMapping("/regist")
+    public R regist(@RequestBody MemberRegistVo vo){
+        try {
+            memberService.regist(vo);
+            return R.ok();
+        } catch (UserNameExist e) {
+            return R.error(CodeEnum.USER_EXIST_EXCEPTION.getCode(), CodeEnum.USER_EXIST_EXCEPTION.getMsg());
+        } catch (PhoneExist e) {
+            return R.error(CodeEnum.PHONE_EXIST_EXCEPTION.getCode(), CodeEnum.PHONE_EXIST_EXCEPTION.getMsg());
+        }
+    }
 
     /**
      * 列表

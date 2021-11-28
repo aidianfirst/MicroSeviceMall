@@ -3,6 +3,7 @@ package com.tang.mall.product.service.impl;
 import com.tang.mall.product.entity.AttrEntity;
 import com.tang.mall.product.service.AttrService;
 import com.tang.mall.product.vo.AttrGroupWithAttrsVo;
+import com.tang.mall.product.vo.SpuItemAttrGroupVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,8 @@ import java.util.stream.Collectors;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.Query;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.Query;
 
 import com.tang.mall.product.dao.AttrGroupDao;
 import com.tang.mall.product.entity.AttrGroupEntity;
@@ -74,6 +75,12 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
         }).collect(Collectors.toList());
 
         return collect;
+    }
+
+    @Override
+    public List<SpuItemAttrGroupVo> getAttrGroupWithAttrsBySpuId(Long spuId, Long catelogId) {
+        // 查询spu对应所有属性的分组信息以及当前分组下的所有属性对应的值
+        return baseMapper.getAttrGroupWithAttrsBySpuId(spuId, catelogId);
     }
 
 }

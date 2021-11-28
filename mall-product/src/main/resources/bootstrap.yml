@@ -22,6 +22,8 @@ spring:
             group: dev
             refresh: true
 
-
+          - data-id: thread.yml
+            group: dev
+            refresh: true
 
 

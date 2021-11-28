@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package com.tang.common.utils;
+package com.tang.mall.common.utils;
 
 /**
  * 常量

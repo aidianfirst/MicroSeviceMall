@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tang.mall.order.entity.OrderSettingEntity;
 import com.tang.mall.order.service.OrderSettingService;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.R;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.R;
 
 
 

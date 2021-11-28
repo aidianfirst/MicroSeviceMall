@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tang.mall.product.entity.SkuImagesEntity;
 import com.tang.mall.product.service.SkuImagesService;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.R;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.R;
 
 
 

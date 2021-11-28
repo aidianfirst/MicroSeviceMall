@@ -1,7 +1,7 @@
 /**
   * Copyright 2021 json.cn 
   */
-package com.tang.common.to;
+package com.tang.mall.common.to;
 
 import lombok.Data;
 

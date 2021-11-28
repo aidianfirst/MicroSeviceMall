@@ -1,19 +1,16 @@
 package com.tang.mall.coupon.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.tang.mall.coupon.entity.SeckillSessionEntity;
 import com.tang.mall.coupon.service.SeckillSessionService;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.R;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.R;
 
 
 
@@ -29,6 +26,13 @@ import com.tang.common.utils.R;
 public class SeckillSessionController {
     @Autowired
     private SeckillSessionService seckillSessionService;
+
+    // 最近3天要参与的秒杀信息
+    @GetMapping(value = "/Lates3DaySession")
+    public R getLatest3DaySession(){
+        List<SeckillSessionEntity> seckillSessionEntities = seckillSessionService.getLates3DaySession();
+        return R.ok().setData(seckillSessionEntities);
+    }
 
     /**
      * 列表

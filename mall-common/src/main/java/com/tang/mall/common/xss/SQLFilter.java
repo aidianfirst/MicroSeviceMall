@@ -6,9 +6,9 @@
  * 版权所有，侵权必究！
  */
 
-package com.tang.common.xss;
+package com.tang.mall.common.xss;
 
-import com.tang.common.exception.RRException;
+import com.tang.mall.common.exception.RRException;
 import org.apache.commons.lang.StringUtils;
 
 /**

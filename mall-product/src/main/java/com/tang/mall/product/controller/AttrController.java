@@ -11,10 +11,9 @@ import com.tang.mall.product.vo.AttrVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.tang.mall.product.entity.AttrEntity;
 import com.tang.mall.product.service.AttrService;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.R;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.R;
 
 import javax.annotation.Resource;
 

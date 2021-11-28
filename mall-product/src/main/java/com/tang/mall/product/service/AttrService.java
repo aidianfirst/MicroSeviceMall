@@ -1,7 +1,7 @@
 package com.tang.mall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tang.common.utils.PageUtils;
+import com.tang.mall.common.utils.PageUtils;
 import com.tang.mall.product.entity.AttrEntity;
 import com.tang.mall.product.vo.AttrGroupRelationVo;
 import com.tang.mall.product.vo.AttrRespVo;
@@ -34,5 +34,8 @@ public interface AttrService extends IService<AttrEntity> {
     void deleRelation(AttrGroupRelationVo[] vos);
 
     PageUtils getNoRelationAttr(Map<String, Object> params, Long attrgroupId);
+
+    // 在属性字段中，找到可用于检索的属性
+    List<Long> selectSearchAttrs(List<Long> attrIds);
 }
 

@@ -1,22 +1,16 @@
 package com.tang.mall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.tang.mall.product.entity.BrandEntity;
 import com.tang.mall.product.service.BrandService;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.R;
-
-import javax.validation.Valid;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.R;
 
 
 /**
@@ -31,6 +25,12 @@ import javax.validation.Valid;
 public class BrandController {
     @Autowired
     private BrandService brandService;
+
+    @GetMapping("/infos")
+    public R getBrandByIds(@RequestParam("brandIds") List<Long> brandIds){
+        List<BrandEntity> brand = brandService.getBrandByIds(brandIds);
+        return R.ok().put("brand", brand);
+    }
 
     /**
      * 列表

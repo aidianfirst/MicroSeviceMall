@@ -1,10 +1,13 @@
 package com.tang.mall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tang.common.utils.PageUtils;
+import com.tang.mall.common.utils.PageUtils;
 import com.tang.mall.product.entity.SkuInfoEntity;
+import com.tang.mall.product.vo.SkuItemVo;
 
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 /**
  * sku
@@ -18,5 +21,9 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
     PageUtils queryPage(Map<String, Object> params);
 
     PageUtils queryPageByCondition(Map<String, Object> params);
+
+    List<SkuInfoEntity> getSkuBySpuId(Long spuId);
+
+    SkuItemVo itemInfo(Long skuId) throws ExecutionException, InterruptedException;
 }
 

@@ -2,7 +2,6 @@ package com.tang.mall.product.controller;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -13,8 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.tang.mall.product.entity.CategoryBrandRelationEntity;
 import com.tang.mall.product.service.CategoryBrandRelationService;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.R;
+import com.tang.mall.common.utils.R;
 
 
 

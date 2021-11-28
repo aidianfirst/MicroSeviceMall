@@ -22,5 +22,8 @@ spring:
             group: dev
             refresh: true
 
+          - data-id: rabbit.yml
+            group: dev
+            refresh: true
 
-
+  

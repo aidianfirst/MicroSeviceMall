@@ -1,5 +1,6 @@
 package com.tang.mall.product.controller;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -8,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.tang.mall.product.entity.SkuInfoEntity;
 import com.tang.mall.product.service.SkuInfoService;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.R;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.R;
 
 
 
@@ -25,6 +26,12 @@ import com.tang.common.utils.R;
 public class SkuInfoController {
     @Autowired
     private SkuInfoService skuInfoService;
+
+    @GetMapping("/{skuId}/price")
+    public BigDecimal getNewPrice(@PathVariable("skuId") Long skuId){
+        SkuInfoEntity Id = skuInfoService.getById(skuId);
+        return Id.getPrice();
+    }
 
     /**
      * 远程调用查询名字

@@ -5,8 +5,8 @@ import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.Query;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.Query;
 
 import com.tang.mall.ware.dao.WareOrderTaskDao;
 import com.tang.mall.ware.entity.WareOrderTaskEntity;
@@ -24,6 +24,11 @@ public class WareOrderTaskServiceImpl extends ServiceImpl<WareOrderTaskDao, Ware
         );
 
         return new PageUtils(page);
+    }
+
+    @Override
+    public WareOrderTaskEntity getOrderTaskByOrderSn(String orderSn) {
+        return this.getOne(new QueryWrapper<WareOrderTaskEntity>().eq("order_sn", orderSn));
     }
 
 }

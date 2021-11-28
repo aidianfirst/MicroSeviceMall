@@ -1,13 +1,16 @@
 package com.tang.mall.product.service.impl;
 
 import com.tang.mall.product.service.CategoryBrandRelationService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.Query;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.Query;
 
 import com.tang.mall.product.dao.BrandDao;
 import com.tang.mall.product.entity.BrandEntity;
@@ -43,6 +46,12 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
         if(!StringUtils.isEmpty(brand.getName())){
             categoryBrandRelationService.updateBrand(brand.getBrandId(), brand.getName());
         }
+    }
+
+    @Cacheable(value = "brands", key = "'brandinfo:'+#root.args[0]")
+    @Override
+    public List<BrandEntity> getBrandByIds(List<Long> brandIds) {
+        return baseMapper.selectList(new QueryWrapper<BrandEntity>().in("brand_id", brandIds));
     }
 
 }

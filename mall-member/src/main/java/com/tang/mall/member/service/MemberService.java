@@ -1,8 +1,10 @@
 package com.tang.mall.member.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tang.common.utils.PageUtils;
+import com.tang.mall.common.utils.PageUtils;
 import com.tang.mall.member.entity.MemberEntity;
+import com.tang.mall.member.vo.MemberLoginVo;
+import com.tang.mall.member.vo.MemberRegistVo;
 
 import java.util.Map;
 
@@ -16,5 +18,9 @@ import java.util.Map;
 public interface MemberService extends IService<MemberEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void regist(MemberRegistVo vo);
+
+    MemberEntity login(MemberLoginVo vo);
 }
 

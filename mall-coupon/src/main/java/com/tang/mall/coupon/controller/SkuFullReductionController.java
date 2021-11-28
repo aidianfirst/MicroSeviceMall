@@ -3,14 +3,14 @@ package com.tang.mall.coupon.controller;
 import java.util.Arrays;
 import java.util.Map;
 
-import com.tang.common.to.SkuReductionTo;
+import com.tang.mall.common.to.SkuReductionTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.tang.mall.coupon.entity.SkuFullReductionEntity;
 import com.tang.mall.coupon.service.SkuFullReductionService;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.R;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.R;
 
 
 

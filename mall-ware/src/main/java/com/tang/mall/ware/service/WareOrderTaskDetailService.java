@@ -1,7 +1,7 @@
 package com.tang.mall.ware.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tang.common.utils.PageUtils;
+import com.tang.mall.common.utils.PageUtils;
 import com.tang.mall.ware.entity.WareOrderTaskDetailEntity;
 
 import java.util.Map;

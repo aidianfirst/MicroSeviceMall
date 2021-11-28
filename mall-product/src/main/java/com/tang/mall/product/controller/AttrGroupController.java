@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.tang.mall.product.entity.AttrGroupEntity;
 import com.tang.mall.product.service.AttrGroupService;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.R;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.R;
 
 import javax.annotation.Resource;
 

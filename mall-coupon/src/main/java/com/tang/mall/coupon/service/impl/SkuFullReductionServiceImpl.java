@@ -1,7 +1,7 @@
 package com.tang.mall.coupon.service.impl;
 
-import com.tang.common.to.MemberPrice;
-import com.tang.common.to.SkuReductionTo;
+import com.tang.mall.common.to.MemberPrice;
+import com.tang.mall.common.to.SkuReductionTo;
 import com.tang.mall.coupon.entity.MemberPriceEntity;
 import com.tang.mall.coupon.entity.SkuLadderEntity;
 import com.tang.mall.coupon.service.MemberPriceService;
@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.Query;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.Query;
 
 import com.tang.mall.coupon.dao.SkuFullReductionDao;
 import com.tang.mall.coupon.entity.SkuFullReductionEntity;

@@ -1,7 +1,7 @@
 package com.tang.mall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tang.common.utils.PageUtils;
+import com.tang.mall.common.utils.PageUtils;
 import com.tang.mall.product.entity.SpuInfoEntity;
 import com.tang.mall.product.vo.SpuSaveVo;
 
@@ -21,5 +21,9 @@ public interface SpuInfoService extends IService<SpuInfoEntity> {
     void saveSpuInfo(SpuSaveVo vo);
 
     PageUtils queryPageByCondition(Map<String, Object> params);
+
+    void up(Long spuId);
+
+    SpuInfoEntity getSpuInfoBySkuId(Long skuId);
 }
 

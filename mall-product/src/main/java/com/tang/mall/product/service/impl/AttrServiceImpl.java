@@ -12,6 +12,7 @@ import com.tang.mall.product.vo.AttrGroupRelationVo;
 import com.tang.mall.product.vo.AttrRespVo;
 import com.tang.mall.product.vo.AttrVo;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -22,8 +23,8 @@ import java.util.stream.Collectors;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.tang.common.utils.PageUtils;
-import com.tang.common.utils.Query;
+import com.tang.mall.common.utils.PageUtils;
+import com.tang.mall.common.utils.Query;
 
 import com.tang.mall.product.dao.AttrDao;
 import com.tang.mall.product.entity.AttrEntity;
@@ -118,6 +119,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         return pageUtils;
     }
 
+    @Cacheable(value = "attr", key = "'attrinfo:'+#root.args[0]")
     @Override
     public AttrRespVo getAttrinfo(Long attrId) {
         AttrRespVo attrRespVo = new AttrRespVo();
@@ -221,6 +223,13 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         PageUtils pageUtils = new PageUtils(page);
 
         return pageUtils;
+    }
+
+    @Override
+    public List<Long> selectSearchAttrs(List<Long> attrIds) {
+        List<Long> searchAttrIds = baseMapper.selectSearchAttrIds(attrIds);
+
+        return searchAttrIds;
     }
 
 }

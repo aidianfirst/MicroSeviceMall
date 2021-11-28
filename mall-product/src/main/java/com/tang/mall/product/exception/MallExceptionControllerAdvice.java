@@ -1,14 +1,11 @@
 package com.tang.mall.product.exception;
 
-import com.tang.common.exception.CodeEnum;
-import com.tang.common.utils.R;
+import com.tang.mall.common.exception.CodeEnum;
+import com.tang.mall.common.utils.R;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.apache.bcel.classfile.Code;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;

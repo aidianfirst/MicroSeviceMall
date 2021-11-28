@@ -1,7 +1,7 @@
 package com.tang.mall.member.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tang.common.utils.PageUtils;
+import com.tang.mall.common.utils.PageUtils;
 import com.tang.mall.member.entity.GrowthChangeHistoryEntity;
 
 import java.util.Map;
